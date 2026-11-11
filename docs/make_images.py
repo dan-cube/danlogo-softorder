@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Regenerate the README images in docs/images/ (banner, palette, workflow).
+"""Regenerate the README images in docs/images/ (banner, palette, workflow, social-preview).
 
     .venv/bin/python docs/make_images.py            # writes SVGs
     SVG2PNG=/path/to/svg2png .venv/bin/python docs/make_images.py   # + PNGs
+    ... docs/make_images.py social-preview                          # only the named images
 
 Uses the EonPoint example code for the mark; text is set in system fonts
 (these are README illustrations, not logo artwork).
@@ -90,10 +91,31 @@ def workflow():
     return doc(W, H, "".join(g), SHIRO)
 
 
+def social():
+    """GitHub social preview (1280x640), uploaded by hand in Settings -> Social preview."""
+    W, H = 1280, 640
+    g = [t(96, 160, "DANLOGO", 20, ISHI, 500, ls=6),
+         f'<circle cx="252" cy="153" r="4" fill="{SHU}"/>',
+         t(270, 160, "SOFT ORDER", 20, ISHI, 500, ls=6),
+         t(90, 314, "柔性秩序", 128, SUMI, 300, ls=8, fam=CN),
+         t(96, 386, "Complete logo identity systems,", 32, SUMI, 300),
+         t(96, 428, "organic and quietly precise", 32, SUMI, 300),
+         t(96, 472, "for AI tools such as Claude &amp; Codex · brief to delivery", 22, TXT2, 300),
+         f'<rect x="96" y="512" width="64" height="1.5" fill="{ISHI}"/>',
+         t(96, 556, "有机的形，机械的精度", 24, TXT2, 300, fam=CN),
+         mark(992, 340, 360)]
+    return doc(W, H, "".join(g), SHIRO)
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     svg2png = os.environ.get("SVG2PNG")
-    for name, fn, px in (("banner", banner, 2400), ("palette", palette, 2400), ("workflow", workflow, 2400)):
+    jobs = (("banner", banner, 2400), ("palette", palette, 2400), ("workflow", workflow, 2400),
+            ("social-preview", social, 1280))
+    only = set(sys.argv[1:])
+    for name, fn, px in jobs:
+        if only and name not in only:
+            continue
         p = os.path.join(OUT, name + ".svg")
         open(p, "w").write(fn())
         if svg2png:

@@ -1,5 +1,9 @@
 # 更新记录
 
+## 0.1.2 · 2026-11-11
+
+- 新增 GitHub 社交预览图 `docs/images/social-preview.png`（1280×640，文字加「01 原生」图形），`docs/make_images.py` 可单独重画指定图片。
+
 ## 0.1.1 · 2026-11-11
 
 - 加入 MIT 许可证（LICENSE）。EonPoint 亿触点的名称、标志、定制字、案例图片，以及案例代码画出的标志与字形，不在许可范围内（见 README 与 case.md）。
