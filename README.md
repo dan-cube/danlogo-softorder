@@ -110,3 +110,9 @@ Just ask, for example: "Design a logo for <brand> in the Soft Order style." The 
 ## Privacy
 
 The case shows the brand name and the design work. The company's full legal name, partners, trademark filings and contact details are not part of this repository.
+
+## License
+
+The skill's text and code are released under the [MIT License](LICENSE): you may use, copy, modify and redistribute them, including commercially, as long as the copyright notice and licence text travel with them.
+
+The EonPoint 亿触点 name, marks, custom lettering and case images belong to their owner, as do the marks and letterforms drawn by the code in `examples/eonpoint-yuansheng/` and the images in `docs/images/` that show them. They are included as a case study only and are **not** covered by the MIT License; please don't reuse them. You can learn from how that code is written, but not reuse its shapes or letterforms.
